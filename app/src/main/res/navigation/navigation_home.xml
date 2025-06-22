@@ -8,11 +8,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.wheretonext.ui.home.HomeFragment"
-        android:label="HomeFragment">
-<!--        tools:layout="@layout/fragment_home">-->
-        <action
-            android:id="@+id/action_homeFragment_to_citiesFragment"
-            app:destination="@id/citiesFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_navigation_users"
             app:destination="@id/navigation_users" />

@@ -1,7 +1,7 @@
-package com.example.wheretonext.repositories
+package com.example.wheretonext.data.repositories
 
 import com.example.wheretonext.ApplicationController
-import com.example.wheretonext.models.User
+import com.example.wheretonext.data.models.User
 
 object UserRepository {
     suspend fun insert(entities: List<User>) {

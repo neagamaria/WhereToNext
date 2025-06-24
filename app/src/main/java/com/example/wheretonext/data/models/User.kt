@@ -1,10 +1,10 @@
-package com.example.wheretonext.models
+package com.example.wheretonext.data.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "user")
 data class User(
     @PrimaryKey
     val id: String,

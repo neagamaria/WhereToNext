@@ -1,11 +1,11 @@
-package com.example.wheretonext.models
+package com.example.wheretonext.data.models
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity
+@Entity(tableName = "category")
 data class Category(
     @PrimaryKey
     val id: String,

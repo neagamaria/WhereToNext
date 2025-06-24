@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.devtools.ksp") version "2.0.21-1.0.27" apply false
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -36,22 +36,48 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
-        viewBinding = true
+        buildConfig = true
     }
 }
 
 dependencies {
-    implementation(libs.androidx.room.runtime)
-//    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
-    implementation(libs.androidx.navigation.dynamic.features.fragment)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.room.common.jvm)
+    val room_version = "2.6.1"
+
+    implementation(libs.androidx.room.runtime)
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp(libs.androidx.room.compiler)
+
+    // If this project only uses Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+    annotationProcessor(libs.androidx.room.compiler)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    //implementation(libs.androidx.room.ktx)
+
+    // Jetpack Compose integration
+    implementation(libs.androidx.navigation.compose)
+    // Views/Fragments integration
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    // Feature module support for Fragments
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
+    // Testing Navigation
     androidTestImplementation(libs.androidx.navigation.testing)
+    // JSON serialization library, works with the Kotlin serialization plugin
     implementation(libs.kotlinx.serialization.json)
+
+//    implementation(libs.glide)
+//
+//    implementation(libs.androidx.core.splashscreen)
+//
+//    implementation(libs.retrofit)
+//    implementation(libs.converter.gson) // For JSON parsing
+//    implementation(libs.logging.interceptor) // Logging
+//    implementation(libs.kotlinx.coroutines.android) // Coroutines
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

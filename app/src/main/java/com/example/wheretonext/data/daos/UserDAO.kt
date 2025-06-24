@@ -5,11 +5,11 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.wheretonext.models.User
+import com.example.wheretonext.data.models.User
 
 
 @Dao
-interface UserDao {
+interface UserDAO {
     @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
@@ -21,7 +21,7 @@ interface UserDao {
     fun findByName(first: String, last: String): User
 
     @Insert
-    fun insertAll(vararg users: List<User>)
+    fun insertAll(users: List<User>)
 
     @Delete
     fun delete(user: User)

@@ -2,6 +2,7 @@ package com.example.wheretonext
 
 import android.app.Application
 import androidx.room.Room
+import com.example.wheretonext.data.AppDatabase
 
 // singleton class
 class ApplicationController: Application() {

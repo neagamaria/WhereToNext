@@ -5,9 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.wheretonext.models.Category
-import com.example.wheretonext.models.CategoryWithEvents
-import com.example.wheretonext.models.Event
+import com.example.wheretonext.data.models.Category
+import com.example.wheretonext.data.models.CategoryWithEvents
 
 @Dao
 interface CategoryDAO {
@@ -25,7 +24,7 @@ interface CategoryDAO {
     fun getCategoryWithEvents(): List<CategoryWithEvents>
 
     @Insert
-    fun insertAll(vararg categories: Category)
+    fun insertAll(categories: List<Category>)
 
     @Insert
     suspend fun insert(category: Category)

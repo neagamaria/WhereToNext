@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Transaction
-import com.example.wheretonext.models.Event
+import com.example.wheretonext.data.models.Event
 
 @Dao
 interface EventDAO {
@@ -18,11 +17,14 @@ interface EventDAO {
     @Query("SELECT * FROM event WHERE name LIKE :name LIMIT 1")
     fun findByName(name: String): Event
 
-    @Query("SELECT * FROM event WHERE location LIKE :location LIMIT 1")
-    fun findByLocation(location: String): Event
+    @Query("SELECT * FROM Event WHERE locationId = :locationId ORDER BY date ASC")
+    fun getByLocation(locationId: String): List<Event>
+
+    @Query("SELECT * FROM Event WHERE categoryId = :categoryId ORDER BY date ASC")
+    suspend fun getByCategory(categoryId: String): List<Event>
 
     @Insert
-    fun insertAll(vararg events: Event)
+    fun insertAll(events: List<Event>)
 
     @Insert
     suspend fun insert(event: Event)

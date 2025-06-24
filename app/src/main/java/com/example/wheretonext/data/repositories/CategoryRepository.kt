@@ -1,8 +1,8 @@
-package com.example.wheretonext.repositories
+package com.example.wheretonext.data.repositories
 
 import com.example.wheretonext.ApplicationController
-import com.example.wheretonext.models.Category
-import com.example.wheretonext.models.CategoryWithEvents
+import com.example.wheretonext.data.models.Category
+import com.example.wheretonext.data.models.CategoryWithEvents
 
 object CategoryRepository {
     suspend fun insert(entityModel: Category) {

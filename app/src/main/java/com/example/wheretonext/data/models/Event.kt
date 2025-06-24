@@ -1,11 +1,11 @@
-package com.example.wheretonext.models
+package com.example.wheretonext.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.w3c.dom.Text
 import java.util.Date
 
-@Entity
+@Entity(tableName = "event")
 class Event (
     @PrimaryKey
     val id: String,

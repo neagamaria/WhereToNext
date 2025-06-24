@@ -1,4 +1,4 @@
-package com.example.wheretonext.models
+package com.example.wheretonext.data.models
 
 import androidx.room.Embedded
 import androidx.room.Relation

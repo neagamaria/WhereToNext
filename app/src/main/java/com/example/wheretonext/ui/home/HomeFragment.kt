@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wheretonext.R
 import com.example.wheretonext.adapters.EventsAdapter
 import com.example.wheretonext.data.models.Event
+import com.example.wheretonext.ui.events.EventsFragmentDirections
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -34,9 +37,14 @@ class HomeFragment: Fragment() {
             Event("1", "OperaFest", "1", "12.07.2025".toDate(), 5, "2", "desc"),
             Event("1", "TheaterPlay", "1", "10.07.2025".toDate(), 2, "3", "desc")
         )
-        val adapter = EventsAdapter(
-            items,
-            onItemClick = TODO()
+        val adapter = EventsAdapter(items,
+            onItemClick = { event ->
+                Toast.makeText(requireContext(), "Clicked: ${event.name}", Toast.LENGTH_SHORT).show()
+            },
+            onDetailsClick = { event ->
+                val action = EventsFragmentDirections.actionHomeFragmentToEventDetailsFragment(event.id)
+                findNavController().navigate(action)
+            }
         )
 
         val layoutManager = LinearLayoutManager(requireContext())

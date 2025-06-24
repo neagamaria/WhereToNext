@@ -4,41 +4,69 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="@dimen/default_space">
-    
-    <TextView
-        android:id="@+id/tv_event_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Name"/>
+    android:padding="@dimen/default_space"
+    android:background="@color/white"
+    android:layout_margin="8dp"
+    >
 
-    <TextView
-        android:id="@+id/tv_event_date"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Date" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_event_duration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Duration" />
+        <TextView
+            android:id="@+id/tv_event_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="#fad255"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            tools:text="Name" />
 
-    <TextView
-        android:id="@+id/tv_event_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Location" />
+        <TextView
+            android:id="@+id/tv_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            tools:text="Date"
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_event_category"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Category" />
+        android:orientation="horizontal"
+        android:paddingTop="4dp">
 
-    <TextView
-        android:id="@+id/tv_event_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Description"/>
+        <TextView
+            android:id="@+id/tv_event_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:textSize="14sp"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/tv_event_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#555555"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            tools:text="Category"
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_details"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="@dimen/default_space"
+        android:text="@string/view_details"
+        android:textSize="12sp"
+        tools:ignore="SmallSp" />
+
 </LinearLayout>

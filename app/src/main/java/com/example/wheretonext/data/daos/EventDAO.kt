@@ -17,6 +17,9 @@ interface EventDAO {
     @Query("SELECT * FROM event WHERE name LIKE :name LIMIT 1")
     fun findByName(name: String): Event
 
+    @Query("SELECT * FROM event WHERE id = :eventId")
+    suspend fun findById(eventId: String): Event?
+
     @Query("SELECT * FROM Event WHERE locationId = :locationId ORDER BY date ASC")
     fun getByLocation(locationId: String): List<Event>
 
@@ -31,4 +34,10 @@ interface EventDAO {
 
     @Delete
     fun delete(event: Event)
+
+    @Query("DELETE FROM event WHERE id = :eventId")
+    suspend fun deleteById(eventId: String)
+
+    @Query("DELETE FROM event")
+    fun deleteAll()
 }

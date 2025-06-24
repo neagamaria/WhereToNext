@@ -20,6 +20,9 @@
     <!--    HOME-->
     <string name="home">Home</string>
     <string name="all_events">All Events</string>
+    <string name="view_details">View Details</string>
+    <string name="details">Details:</string>
+    <string name="delete">Delete</string>
 
 
 </resources>

@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wheretonext.R
 import com.example.wheretonext.adapters.EventsAdapter
 import com.example.wheretonext.data.AppDatabase
+import com.example.wheretonext.ui.login.LoginFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,9 +44,15 @@ class EventsFragment : Fragment() {
                     eventDao.getAll()
                 }
 
-                val adapter = EventsAdapter(events) { event ->
-                    Toast.makeText(requireContext(), "Clicked: ${event.name}", Toast.LENGTH_SHORT).show()
-                }
+                val adapter = EventsAdapter(events,
+                    onItemClick = { event ->
+                        Toast.makeText(requireContext(), "Clicked: ${event.name}", Toast.LENGTH_SHORT).show()
+                    },
+                    onDetailsClick = { event ->
+                        val action = EventsFragmentDirections.actionHomeFragmentToEventDetailsFragment(event.id)
+                        findNavController().navigate(action)
+                    }
+                )
 
             val layoutManager = LinearLayoutManager(requireContext())
 
@@ -53,3 +63,4 @@ class EventsFragment : Fragment() {
         }
     }
 }
+

@@ -4,7 +4,7 @@
     android:id="@+id/events_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/lightGrey">
 
 
     <LinearLayout
@@ -20,6 +20,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8">
 
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search by Location" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,9 +39,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventsRecyclerView"
         android:layout_height="0dp"
+        android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lly_header"  android:layout_width=""/>
+        app:layout_constraintTop_toBottomOf="@+id/lly_header"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ import com.example.wheretonext.data.models.Event
 
 
 class EventsAdapter(
-    private val items: List<Event>,
+    private var events: List<Event>,
     private val onItemClick: (Event) -> Unit,
     private val onDetailsClick: (Event) -> Unit
 ) : RecyclerView.Adapter<EventsAdapter.EventViewHolder>() {
@@ -48,9 +48,15 @@ class EventsAdapter(
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        val event = items.getOrNull(position) ?: return
+        val event = events.getOrNull(position) ?: return
         holder.bind(event)
     }
 
-    override fun getItemCount(): Int = items.size
+    fun updateList(newEvents: List<Event>) {
+        events = newEvents
+        notifyDataSetChanged()
+    }
+
+
+    override fun getItemCount(): Int = events.size
 }

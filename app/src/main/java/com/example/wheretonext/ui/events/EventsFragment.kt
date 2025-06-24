@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -35,14 +38,33 @@ class EventsFragment : Fragment() {
             val recyclerView = view.findViewById<RecyclerView>(R.id.eventsRecyclerView)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+            val spinnerLocation = view.findViewById<Spinner>(R.id.spinner_location)
+            val spinnerCategory = view.findViewById<Spinner>(R.id.spinner_category)
+
+
             val db = AppDatabase.getDatabase(requireContext())
             val eventDao = db.eventDAO
 
-            // load all events from DB
+            val locationDao = db.locationDAO
+            val categoryDao = db.categoryDAO
+
             lifecycleScope.launch {
-                val events = withContext(Dispatchers.IO) {
-                    eventDao.getAll()
+                // get locations, categories and events
+                val locations = withContext(Dispatchers.IO) { locationDao.getAll() }
+                val categories = withContext(Dispatchers.IO) { categoryDao.getAll() }
+                val events = withContext(Dispatchers.IO) { eventDao.getAll() }
+
+                val locationNames = listOf("All Locations") + locations.map { it.name }
+                val categoryNames = listOf("All Categories") + categories.map { it.name }
+
+
+                spinnerLocation.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, locationNames).apply {
+                    setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 }
+                spinnerCategory.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categoryNames).apply {
+                    setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                }
+
 
                 val adapter = EventsAdapter(events,
                     onItemClick = { event ->
@@ -60,6 +82,29 @@ class EventsFragment : Fragment() {
                 this.layoutManager = layoutManager
                 this.adapter = adapter
             }
+
+
+                fun filterEvents() {
+                    val selectedLocation = spinnerLocation.selectedItem.toString()
+                    val selectedCategory = spinnerCategory.selectedItem.toString()
+
+                    val filtered = events.filter { event ->
+                        val matchesLocation = selectedLocation == "All Locations" || locations.find { it.id == event.locationId }?.name == selectedLocation
+                        val matchesCategory = selectedCategory == "All Categories" || categories.find { it.id == event.categoryId }?.name == selectedCategory
+                        matchesLocation && matchesCategory
+                    }
+                    adapter.updateList(filtered)
+                }
+
+                spinnerLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) = filterEvents()
+                    override fun onNothingSelected(parent: AdapterView<*>) = filterEvents()
+                }
+
+                spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) = filterEvents()
+                    override fun onNothingSelected(parent: AdapterView<*>) = filterEvents()
+                }
         }
     }
 }

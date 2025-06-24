@@ -8,23 +8,48 @@
 
 
     <LinearLayout
+        android:id="@+id/filter_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_marginTop="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/lly_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Spinner
+            android:id="@+id/spinner_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/lly_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/default_space"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8">
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:queryHint="Search by Location" />
 
         <TextView
             android:layout_width="match_parent"

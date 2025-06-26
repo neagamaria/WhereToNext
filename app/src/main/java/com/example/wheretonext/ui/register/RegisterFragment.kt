@@ -10,10 +10,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.compose.material3.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.wheretonext.R
 import com.example.wheretonext.data.AppDatabase
 import com.example.wheretonext.data.models.User
+import com.example.wheretonext.ui.login.LoginFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -78,8 +80,15 @@ class RegisterFragment: Fragment() {
 
             Toast.makeText(requireContext(), "Registered successfully!", Toast.LENGTH_SHORT).show()
             // Optional: navigate to login or home screen
+
         }
     }
+
+    /*private fun goToLogin() {
+        val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+        findNavController().navigate(action)
+    }*/
+
 
 
 }

@@ -13,5 +13,6 @@ data class User(
     @ColumnInfo(name = "last_name")
     val lastname: String,
     val email: String,
-    val password: String
+    val password: String,
+    val role: String
 )

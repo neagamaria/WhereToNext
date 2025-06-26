@@ -20,8 +20,17 @@ interface UserDAO {
             "last_name LIKE :last LIMIT 1")
     fun findByName(first: String, last: String): User
 
+    @Query("SELECT * FROM user WHERE email = :email AND password = :password")
+    suspend fun login(email: String, password: String): User?
+
+    @Query("SELECT * FROM user WHERE email = :email")
+    suspend fun getUserByEmail(email: String): User?
+
     @Insert
     fun insertAll(users: List<User>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUser(user: User)
 
     @Delete
     fun delete(user: User)

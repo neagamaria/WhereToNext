@@ -19,7 +19,7 @@ import java.util.Date
 
 @Database(
     entities = [User::class, Event::class, Category::class, Location::class],
-    version = 6)
+    version = 7)
 
 @TypeConverters(
     Converters::class
@@ -73,6 +73,13 @@ abstract class AppDatabase : RoomDatabase() {
                                     Event("8", "AI & Ethics Panel", "LOC2", Date(), 2, "CAT2", "A thought-provoking panel discussion on the ethical implications of artificial intelligence, featuring experts from academia, tech companies, and policy organizations.")
                                 )
                                 database.eventDAO.insertAll(events)
+
+                                val users = listOf(
+                                    User("ADMIN1", "Maria", "Neaga", "admin@wheretonext.com", "admin123", "admin"),
+                                    User("USER1", "Melissa", "Pintenaru", "user@wheretonext.com", "user123", "user")
+                                )
+                                database.userDao.insertAll(users)
+
                             }
                         }
                     })

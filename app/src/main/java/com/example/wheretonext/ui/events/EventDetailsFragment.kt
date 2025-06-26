@@ -50,16 +50,22 @@ class EventDetailsFragment : Fragment() {
                 view.findViewById<TextView>(R.id.tv_event_description).text = it.description
             }
         }
-
+        val userRole = arguments?.getString("userRole") ?: "user"
         val deleteButton = view.findViewById<Button>(R.id.btn_delete)
-        deleteButton.setOnClickListener {
-            eventId.let { id ->
-                lifecycleScope.launch {
-                    withContext(Dispatchers.IO) {
-                        eventDao.deleteById(id)
+
+        if (userRole != "admin") {
+            deleteButton.visibility = View.GONE
+        } else {
+            deleteButton.visibility = View.VISIBLE
+            deleteButton.setOnClickListener {
+                eventId.let { id ->
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            eventDao.deleteById(id)
+                        }
+                        Toast.makeText(requireContext(), "Event deleted", Toast.LENGTH_SHORT).show()
+                        findNavController().navigateUp()
                     }
-                    Toast.makeText(requireContext(), "Event deleted", Toast.LENGTH_SHORT).show()
-                    findNavController().navigateUp()
                 }
             }
         }

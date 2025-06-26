@@ -23,7 +23,10 @@ app:startDestination="@id/loginFragment">
     <action
         android:id="@id/action_loginFragment_to_homeFragment"
         app:destination="@+id/homeFragment">
-
+        <argument
+            android:name="role"
+            app:argType="string"
+            android:defaultValue="user" />
     </action>
 
 </fragment>
@@ -44,6 +47,9 @@ app:startDestination="@id/loginFragment">
     android:name="com.example.wheretonext.ui.home.HomeFragment"
     android:label="Home"
     tools:layout="@layout/fragment_home">
-
+    <argument
+        android:name="role"
+        app:argType="string"
+        android:defaultValue="user" />
 </fragment>
 </navigation>

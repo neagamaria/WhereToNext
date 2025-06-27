@@ -1,20 +1,17 @@
 # WhereToNext
 An Android app for listing the upcoming events in your city
 
-## Current state:
-- created Event, Category and User models
-- added DAOs for the models
-- added repository classes
-- created the database class
-- created the singleton ApplicationController and instantiated the database there
-
-## Next steps:
-- create the rest of the models (+DAOs + repositories)
-- add fragments for each model
-- create the login/register functionality
+## Added functionalities:
+- Login and Register
+- List of all events
+- Filter events by location and category
+- View details of an event
+- Admin functionalities: add new event, delete existing event
+- Data stored in Room database
 
 ## Final E/R diagram:
 
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/b282ad04-02fb-4378-a6b8-c5d79e64a30d)
+
 
 

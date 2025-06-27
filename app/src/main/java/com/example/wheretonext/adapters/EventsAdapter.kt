@@ -13,6 +13,8 @@ import com.example.wheretonext.data.models.Event
 
 class EventsAdapter(
     private var events: List<Event>,
+    private val locationMap: Map<String, String>,
+    private val categoryMap: Map<String, String>,
     private val onItemClick: (Event) -> Unit,
     private val onDetailsClick: (Event) -> Unit
 ) : RecyclerView.Adapter<EventsAdapter.EventViewHolder>() {
@@ -29,8 +31,8 @@ class EventsAdapter(
         fun bind(event: Event) {
             nameTextView.text = event.name
             dateTextView.text = event.date.toString()
-            locationTextView.text = event.locationId
-            categoryTextView.text = event.categoryId
+            locationTextView.text = locationMap[event.locationId] ?: "Unknown location"
+            categoryTextView.text = categoryMap[event.categoryId] ?: "Unknown category"
 
             itemView.setOnClickListener {
                 onItemClick(event)

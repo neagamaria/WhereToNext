@@ -19,6 +19,9 @@
         <argument
             android:name="eventId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment" />
     </fragment>
 
     <fragment
@@ -27,9 +30,18 @@
         android:label="Event Details"
         tools:layout="@layout/fragment_event_details">
         <argument
+            android:name="userRole"
+            app:argType="string" />
+        <argument
             android:name="eventId"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="com.example.wheretonext.ui.events.AddEventFragment"
+        android:label="Add Event"
+        tools:layout="@layout/event_form" />
 
     <include app:graph="@navigation/navigation_users" />
 

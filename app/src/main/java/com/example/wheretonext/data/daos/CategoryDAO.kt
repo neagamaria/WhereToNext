@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.example.wheretonext.data.models.Category
 import com.example.wheretonext.data.models.CategoryWithEvents
+import com.example.wheretonext.data.models.Location
 
 @Dao
 interface CategoryDAO {
@@ -31,4 +32,7 @@ interface CategoryDAO {
 
     @Delete
     fun delete(category: Category)
+
+    @Query("SELECT * FROM Category WHERE id = :id")
+    suspend fun getById(id: String): Category?
 }

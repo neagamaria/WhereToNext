@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/yellow" android:textColor="@color/white">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:id="@+id/title" android:text="@string/add_event" android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="24dp" android:layout_gravity="center"/>
+            <EditText android:id="@+id/nameInput" android:hint="Name" android:layout_width="match_parent" android:layout_height="48dp"/>
+            <EditText android:id="@+id/locationIdInput" android:hint="Location ID" android:layout_width="match_parent" android:layout_height="48dp"/>
+            <EditText android:id="@+id/dateInput" android:hint="Date (yyyy-MM-dd)" android:layout_width="match_parent" android:layout_height="48dp"/>
+            <EditText android:id="@+id/durationInput" android:hint="Duration (minutes)" android:inputType="number" android:layout_width="match_parent" android:layout_height="48dp"/>
+            <EditText android:id="@+id/categoryIdInput" android:hint="Category ID" android:layout_width="match_parent" android:layout_height="48dp"/>
+            <EditText android:id="@+id/descriptionInput" android:hint="Description" android:layout_width="match_parent" android:layout_height="48dp"/>
+            <Button android:id="@+id/saveButton" android:layout_width="108dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_gravity="center" android:text="@string/save"/>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
